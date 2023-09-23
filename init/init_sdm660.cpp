@@ -197,21 +197,21 @@ void vendor_load_properties() {
     property_override("dalvik.vm.heapmaxfree", heapmaxfree);
 
     std::string product = GetProperty("ro.product.vendor.device", "");	
-    if (product.find("whyred") != std::string::npos)
+    if (product.find("lavender") != std::string::npos)
     {
         std::string region = GetProperty("ro.boot.hwc", "");
 
-        property_override_triple("ro.product.name", "ro.product.system.name", "ro.product.vendor.name", "whyred");
+        property_override_triple("ro.product.name", "ro.product.system.name", "ro.product.vendor.name", "lavender");
 
         if (region.find("CN") != std::string::npos || region.find("Global") != std::string::npos || region.find("GLOBAL") != std::string::npos)
         {
-            property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Redmi Note 5");
-            property_override_dual("ro.product.odm.model", "persist.vendor.camera.exif.model", "Redmi Note 5");
+            property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Redmi Note 7");
+            property_override_dual("ro.product.odm.model", "persist.vendor.camera.exif.model", "Redmi Note 7");
         }
 	else
         {
-            property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Redmi Note 5 Pro");
-            property_override_dual("ro.product.odm.model", "persist.vendor.camera.exif.model", "Redmi Note 5 Pro");
+            property_override_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "Redmi Note 7");
+            property_override_dual("ro.product.odm.model", "persist.vendor.camera.exif.model", "Redmi Note 7");
         }
 
         // Set hardware revision
