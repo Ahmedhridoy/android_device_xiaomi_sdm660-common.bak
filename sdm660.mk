@@ -472,9 +472,21 @@ else
     $(COMMON_PATH)/power-libperfmgr/sdm660_powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 endif
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
+
+# Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+
 # Preopt SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    Settings
+    Settings \
+    SystemUI \
+    SystemUIGoogle \
+    SettingsGoogle \
+    GoogleDialer
 
 # Protobuf
 PRODUCT_PACKAGES += \

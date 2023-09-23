@@ -111,3 +111,8 @@
 /sys/devices/platform/soc/ca0c000\.qcom,cci/ca0c000\.qcom,cci:qcom,camera@0/video4linux/video[0-9]/wakeup[0-9]+(/.*)?                                       u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/ca0c000\.qcom,cci/ca0c000\.qcom,cci:qcom,camera@1/video4linux/video[0-9]/wakeup[0-9]+(/.*)?                                       u:object_r:sysfs_wakeup:s0
 /sys/devices/platform/soc/ca0c000\.qcom,cci/ca0c000\.qcom,cci:qcom,camera@2/video4linux/video[0-9]/wakeup[0-9]+(/.*)?                                       u:object_r:sysfs_wakeup:s0
+
+# Retrofit
+# find . -type d -name "by-name"
+/dev/block/platform/soc/c0c4000\.sdhci/by-name/cust                      u:object_r:system_block_device:s0
+/dev/block/platform/soc/c0c4000\.sdhci/by-name/vendor                    u:object_r:system_block_device:s0

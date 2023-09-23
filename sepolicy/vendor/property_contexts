@@ -100,3 +100,6 @@ rild.libpath				u:object_r:vendor_rild_libpath_prop:s0
 # Thermal engine
 persist.sys.thermal.                    u:object_r:thermal_engine_prop:s0
 sys.thermal.                            u:object_r:thermal_engine_prop:s0
+
+# Fastbootd
+ro.fastbootd.available                  u:object_r:exported_default_prop:s0
