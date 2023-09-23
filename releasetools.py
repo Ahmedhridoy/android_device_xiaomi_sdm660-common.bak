@@ -18,6 +18,14 @@ import hashlib
 import common
 import re
 
+def FullOTA_InstallBegin(info):
+  AddImage(info, "super_dummy.img", "/tmp/super_dummy.img");
+  flash_script = open("device/xiaomi/lavender/partitions/flash_super_dummy.sh", 'r').read()
+  common.ZipWriteStr(info.output_zip, "install/bin/flash_super_dummy.sh", flash_script);
+  info.script.AppendExtra('package_extract_file("install/bin/flash_super_dummy.sh", "/tmp/flash_super_dummy.sh");')
+  info.script.AppendExtra('run_program("/sbin/sh", "/tmp/flash_super_dummy.sh");')
+  return
+
 def FullOTA_InstallEnd(info):
   input_zip = info.input_zip
   OTA_InstallEnd(info, input_zip)
@@ -37,6 +45,7 @@ def AddImage(info, input_zip, basename, dest):
   data = input_zip.read(path)
   common.ZipWriteStr(info.output_zip, basename, data)
   info.script.AppendExtra('package_extract_file("%s", "%s");' % (basename, dest))
+
 
 def OTA_InstallEnd(info, input_zip):
   info.script.Print("Patching device-tree and verity images...")

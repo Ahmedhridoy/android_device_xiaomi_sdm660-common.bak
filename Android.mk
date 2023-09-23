@@ -10,6 +10,19 @@ ifneq ($(filter tulip jasmine_sprout wayne clover lavender platina jason whyred,
 
 $(shell mkdir -p $(TARGET_OUT_VENDOR)/firmware)
 
+LPFLASH := $(HOST_OUT_EXECUTABLES)/lpflash$(HOST_EXECUTABLE_SUFFIX)
+INSTALLED_SUPERIMAGE_DUMMY_TARGET := $(PRODUCT_OUT)/super_dummy.img
+
+$(INSTALLED_SUPERIMAGE_DUMMY_TARGET): $(PRODUCT_OUT)/super_empty.img $(LPFLASH)
+	$(call pretty,"Target dummy super image: $@")
+	$(hide) touch $@
+	$(hide) $(LPFLASH) $@ $(PRODUCT_OUT)/super_empty.img
+
+.PHONY: super_dummyimage
+super_dummyimage: $(INSTALLED_SUPERIMAGE_DUMMY_TARGET)
+
+INSTALLED_RADIOIMAGE_TARGET += $(INSTALLED_SUPERIMAGE_DUMMY_TARGET)
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := wifi_symlinks
