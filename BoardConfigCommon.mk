@@ -12,17 +12,6 @@ PRODUCT_USES_QCOM_HARDWARE := true
 PRODUCT_BOARD_PLATFORM := sdm660
 OVERRIDE_QCOM_HARDWARE_VARIANT := sdm660
 
-# A/B
-ifeq ($(ENABLE_AB), true)
-AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS ?= \
-    boot \
-    system \
-    vendor
-BOARD_USES_RECOVERY_AS_BOOT := true
-TARGET_NO_RECOVERY := true
-endif
-
 # Build Rules
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
@@ -211,9 +200,6 @@ TARGET_USES_QCOM_BSP := false
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
 # Renderscript
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
