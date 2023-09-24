@@ -145,6 +145,12 @@ ro.netflix.bsp_rev=Q660-13149-1
 # Multi-Gen LRU
 persist.device_config.mglru_native.lru_gen_config=core
 
+# Feature flags
+persist.sys.fflag.override.settings_enable_monitor_phantom_procs=false
+
+# Disable MTE Async for system server
+arm64.memtag.process.system_server=off
+
 # OEM Unlock reporting
 ro.oem_unlock_supported=1
 
