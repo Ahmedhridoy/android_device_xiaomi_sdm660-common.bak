@@ -112,34 +112,20 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 TARGET_RECOVERY_DEVICE_MODULES := libinit_sdm660
 
 # Kernel
-BOARD_KERNEL_CMDLINE := \
-    androidboot.boot_devices=soc/c0c4000.sdhci \
-    androidboot.configfs=true \
-    androidboot.hardware=qcom \
-    androidboot.usbcontroller=a800000.dwc3 \
-    androidboot.super_partition=system \
-    ehci-hcd.park=3 \
-    loop.max_part=7 \
-    lpm_levels.sleep_disabled=1 \
-    msm_rtb.filter=0x37 \
-    printk.devkmsg=on \
-    sched_enable_hmp=1 \
-    sched_enable_power_aware=1 \
-    service_locator.enable=1 \
-    usbcore.autosuspend=7 \
-    user_debug=31 \
-    androidboot.verifiedbootstate=green
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += printk.devkmsg=on
+BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
+BOARD_KERNEL_CMDLINE += kpti=off
+BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/c0c4000.sdhci androidboot.super_partition=system
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_SOURCE := kernel/xiaomi/lavender
 TARGET_KERNEL_CONFIG := lavender_defconfig
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_VERSION := 4.19
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_COMPILE_WITH_MSM_KERNEL := true
-TARGET_KERNEL_CLANG_VERSION := r450784d
-KERNEL_SUPPORTS_LLVM_TOOLS := true
-TARGET_KERNEL_OPTIONAL_LD := true
+TARGET_KERNEL_SOURCE := kernel/xiaomi/lavender
 BOARD_RAMDISK_USE_LZ4 := true
 
 # Enable stats logging in LMKD
@@ -192,6 +178,9 @@ BOARD_SUPER_PARTITION_SYSTEM_DEVICE_SIZE := 3758096384
 BOARD_SUPER_PARTITION_VENDOR_DEVICE_SIZE := 2147483648
 BOARD_SUPER_PARTITION_CUST_DEVICE_SIZE := 872415232
 
+# Peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
 # Extra Symlink
 BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/dsp:/dsp \
@@ -211,9 +200,6 @@ TARGET_USES_QCOM_BSP := false
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(COMMON_PATH)
 
 # Renderscript
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
